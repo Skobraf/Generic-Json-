@@ -11,7 +11,7 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addJson(json);
+		this.props.addJson(json, this.props.index);
 	}
 	render() {
 		return (
@@ -19,11 +19,12 @@ class AddObjectForm extends React.Component {
 				<form>
 					<input type="text" placeholder="Text" ref={this.textRef} />
 					<select name="valeur" onChange={this.getValues} ref={this.statusRef}>
-					<option value="text">text</option>
-					<option value="boolean">Boolean</option>
-					<option value="structure">Structure</option>
-					<option value="array">Array</option>
-					<option value="Date">Date</option>
+						<option value="text">text</option>
+						<option value="boolean">Boolean</option>
+						<option value="number">Number</option>
+						<option value="structure">Structure</option>
+						<option value="array">Array</option>
+						<option value="Date">Date</option>
 					</select>
 					<input type="text" placeholder="Value" ref={this.valueRef} />
 				</form>

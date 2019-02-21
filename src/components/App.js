@@ -3,23 +3,35 @@ import AddObjectForm from './AddObjectForm';
 
 class App extends React.Component {
 	state = {
-		json:{}
+		obj:{}
 	}
-	addJson = (key) => {
-		const json = {...this.state.json};
-		const name = key["textRef"];
-		if(key["statusRef"] === "boolean") {
-			json[name] = 'hello';
-			this.setState({ json })
+	addRow = () => {
+		const row = {...this.state.obj};
+		row[`json${Date.now()}`] = 'hello';
+		this.setState({obj: row});
+		console.log(this.state.obj);
 		}
-		console.log(json);
+	addJson = (key, index) => {
+		const obj = {...this.state.obj};
+		const json = obj[index];
+		console.log(json,key);		
 	}
 	render() {
 		return (
 			<div>
-				<AddObjectForm 
-				addJson={this.addJson}
-				 />
+				<ul>
+					{
+						Object.keys(this.state.obj).map(key => (
+							<AddObjectForm 
+							key={key}
+							index={key}
+							addJson={this.addJson}
+							jsonIndex={this.state.obj[key]}
+							 />
+							)
+					)}
+				</ul>
+				 <button onClick={this.addRow}>Add new</button>
 			</div>
 			)
 	}
