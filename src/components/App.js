@@ -7,14 +7,37 @@ class App extends React.Component {
 	}
 	addRow = () => {
 		const row = {...this.state.obj};
-		row[`json${Date.now()}`] = 'hello';
+		row[`json${Date.now()}`] = {};
 		this.setState({obj: row});
-		console.log(this.state.obj);
 		}
 	addJson = (key, index) => {
 		const obj = {...this.state.obj};
+		const name = key["textRef"];
+		const value = key["valueRef"];
+		const status = key["statusRef"];
 		const json = obj[index];
-		console.log(json,key);		
+			switch(status) {
+	  		case "boolean":
+				json[name] = new Boolean();
+	    	break;
+	    	case "text":
+	    		json[name] = value;
+	    	break;
+	    	case "number":
+	    		json[name] = Number(value);
+	    	break;
+	    	case "date":
+	    		json[name] = new Date();
+	    	break;
+	    	case "structure":
+	    		json[name] = {}
+	    	break;
+	    	case "array":
+	    		json[name] = []
+	    	break;
+	 		 default:
+		}
+		this.setState({ obj })
 	}
 	render() {
 		return (
