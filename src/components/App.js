@@ -11,6 +11,34 @@ class App extends React.Component {
 		row[`json${Date.now()}`] = {};
 		this.setState({obj: row});
 		}
+	toggleVisibility = (key, index) => {
+		const name = key["textRef"];
+		const value = key["valueRef"];
+		const status = key["statusRef"];
+
+			switch(status) {
+	  		case "boolean":
+				this.setState({visible:false})					
+	    	break;
+	    	case "text":
+	    		this.setState({visible:false})
+	    	break;
+	    	case "number":
+	    		this.setState({visible:false})
+	    	break;
+	    	case "date":
+	    		this.setState({visible:false})
+	    	break;
+	    	case "structure":
+	    		this.setState({visible:true})
+	    	break;
+	    	case "array":
+	    		this.setState({visible:true})
+	    	break;
+	 		 default:
+		}
+
+	}
 	addJson = (key, index) => {
 		const obj = {...this.state.obj};
 		const name = key["textRef"];
@@ -20,48 +48,44 @@ class App extends React.Component {
 			switch(status) {
 	  		case "boolean":
 				json[name] = new Boolean();
-				this.setState({visible:false})
+				
 	    	break;
 	    	case "text":
 	    		json[name] = value;
-	    		this.setState({visible:false})
 	    	break;
 	    	case "number":
 	    		json[name] = Number(value);
-	    		this.setState({visible:false})
 	    	break;
 	    	case "date":
 	    		json[name] = new Date();
-	    		this.setState({visible:false})
 	    	break;
 	    	case "structure":
-	    		json[name] = {}
-	    		this.setState({visible:true})
+	    		json[name] = {};
 	    	break;
 	    	case "array":
-	    		json[name] = []
-	    		this.setState({visible:true})
+	    		json[name] = [];
 	    	break;
 	 		 default:
 		}
-		this.setState({ obj,
-							 })
+		this.setState({obj})
+		console.log(key);
 	}
 	render() {
 		return (
 			<div>
-				<ul>
-					{
+				<ul>{
 						Object.keys(this.state.obj).map(key => (
 							<AddObjectForm 
 							key={key}
 							index={key}
 							addJson={this.addJson}
 							visible={this.state.visible}
+							toggleVisibility={this.toggleVisibility}
 							 />	
 							)
 					)}
 				</ul>
+
 				 <button onClick={this.addRow}>Add new</button>
 			</div>
 			)
