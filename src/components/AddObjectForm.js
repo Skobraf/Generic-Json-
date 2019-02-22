@@ -12,6 +12,7 @@ class AddObjectForm extends React.Component {
 			valueRef:this.valueRef.current.value
 		}
 		this.props.addJson(json, this.props.index);
+		console.log(json["statusRef"],this.props.visible);
 	}
 	render() {
 		return (
@@ -24,9 +25,10 @@ class AddObjectForm extends React.Component {
 						<option value="number">Number</option>
 						<option value="structure">Structure</option>
 						<option value="array">Array</option>
-						<option value="Date">Date</option>
+						<option value="date">Date</option>
 					</select>
 					<input type="text" placeholder="Value" ref={this.valueRef} />
+					<button style={{display: this.props.visible ? 'inline-block' : 'none'}}>add</button>
 				</form>
 			</div>
 			)

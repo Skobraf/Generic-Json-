@@ -3,7 +3,8 @@ import AddObjectForm from './AddObjectForm';
 
 class App extends React.Component {
 	state = {
-		obj:{}
+		obj:{},
+		visible:false
 	}
 	addRow = () => {
 		const row = {...this.state.obj};
@@ -19,25 +20,32 @@ class App extends React.Component {
 			switch(status) {
 	  		case "boolean":
 				json[name] = new Boolean();
+				this.setState({visible:false})
 	    	break;
 	    	case "text":
 	    		json[name] = value;
+	    		this.setState({visible:false})
 	    	break;
 	    	case "number":
 	    		json[name] = Number(value);
+	    		this.setState({visible:false})
 	    	break;
 	    	case "date":
 	    		json[name] = new Date();
+	    		this.setState({visible:false})
 	    	break;
 	    	case "structure":
 	    		json[name] = {}
+	    		this.setState({visible:true})
 	    	break;
 	    	case "array":
 	    		json[name] = []
+	    		this.setState({visible:true})
 	    	break;
 	 		 default:
 		}
-		this.setState({ obj })
+		this.setState({ obj,
+							 })
 	}
 	render() {
 		return (
@@ -49,8 +57,8 @@ class App extends React.Component {
 							key={key}
 							index={key}
 							addJson={this.addJson}
-							jsonIndex={this.state.obj[key]}
-							 />
+							visible={this.state.visible}
+							 />	
 							)
 					)}
 				</ul>
