@@ -10,7 +10,7 @@ class App extends React.Component {
 					id:1,
 					type:[{
 						id:2,
-						type:"hello"
+						type:[]
 					}]
 				}]
 			},
@@ -20,6 +20,7 @@ class App extends React.Component {
 			}
 		}
 	}
+
 	addRow = () => {
 		const row = {...this.state.obj};
 		row[`json${Date.now()}`] = {};
@@ -53,25 +54,31 @@ class App extends React.Component {
 		}
 		this.setState({obj})
 	}
-	addStruct = (key, index) => {
-		const obj = {...this.state.obj};
+	addStruct = (index, key) => {
+		const obj = {...this.state.obj["state1"]};
+		const k = {...this.state.obj};
 		const name = key["textRef"];
 		const value = key["valueRef"];
 		const status = key["statusRef"];
 		const json = obj[index];
+		let data = obj.type[0];
+		for(let i = 0; i < 1; i++) {
+			data = data.type[0]
+		}
 			switch(status) {
 	  		case "array":
-				json[status] = [];
-				json["name"] = name;	
+				data.type.push({
+					id:3,
+					name:name,
+					type:[]})	
 	    	break;
 	    	case "structure":
-	    		json[status] = {};
-	    		json["name"] = name;
+	  
 	    	break;
 	 		 default:
 		}
-		this.setState({obj})
-		console.log(key);
+		this.setState({obj: k})
+		console.log(key, status, obj,k);
 	}
 	render() {
 		return (

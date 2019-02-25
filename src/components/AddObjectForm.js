@@ -6,7 +6,6 @@ class AddObjectForm extends React.Component {
 	valueRef = React.createRef();
 	showVisible = () => {
 		this.setState({visible: false});
-		console.log(this.props.type)
 	}
 	showMe = (e) => {
 		e.preventDefault();
@@ -15,7 +14,8 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addStruct(json, this.props.index)
+		this.props.addStruct(this.props.type.id,json)
+		//console.log(this.props)
 	}
 	getValues = () => {
 		const json = {
@@ -31,7 +31,7 @@ class AddObjectForm extends React.Component {
 			this.visible = true;
 		}
 		else {this.visible = false;}
-		console.log(this.props);
+		
 		}
 		
 
@@ -58,7 +58,12 @@ class AddObjectForm extends React.Component {
 				</li>
 				<ul>
 				{arr.type.map((comment, i) => (
-						<AddObjectForm key={i} type={comment} />
+						<AddObjectForm
+						key={i}
+						type={comment}
+						addStruct={this.props.addStruct}
+						addJson={this.props.addJson}
+						/>
 			))}
 				</ul>
 			</ul>
