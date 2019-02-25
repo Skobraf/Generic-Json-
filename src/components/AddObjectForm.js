@@ -5,7 +5,8 @@ class AddObjectForm extends React.Component {
 	textRef = React.createRef();
 	valueRef = React.createRef();
 	showVisible = () => {
-		this.setState({visible: false})
+		this.setState({visible: false});
+		console.log(this.props.type)
 	}
 	showMe = (e) => {
 		e.preventDefault();
@@ -35,9 +36,10 @@ class AddObjectForm extends React.Component {
 		
 
 	render() {
-		let visible = false;
-		return (
-			<ul>
+		if(Array.isArray(this.props.type.type)) {
+			let arr = this.props.type;
+			return (
+					<ul>
 				<li onClick={this.showVisible}>
 					<form onSubmit={this.showMe}>
 						<input type="text" placeholder="Text" ref={this.textRef} />
@@ -55,10 +57,19 @@ class AddObjectForm extends React.Component {
 					</form>
 				</li>
 				<ul>
-				
+				{arr.type.map((comment, i) => (
+						<AddObjectForm key={i} type={comment} />
+			))}
 				</ul>
 			</ul>
+				)
+		}
+		else return (
+			<p>Not Array</p>
 			)
+			return (
+				<p>not yer</p>
+				)
 	}
 }
 

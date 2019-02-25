@@ -3,7 +3,22 @@ import AddObjectForm from './AddObjectForm';
 
 class App extends React.Component {
 	state = {
-		obj:{}
+		obj:{
+			state1:{
+				id:0,
+				type:[{
+					id:1,
+					type:[{
+						id:2,
+						type:"hello"
+					}]
+				}]
+			},
+			state2:{
+				id:0,
+				type:"hello"
+			}
+		}
 	}
 	addRow = () => {
 		const row = {...this.state.obj};
