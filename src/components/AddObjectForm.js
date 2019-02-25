@@ -14,8 +14,8 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addStruct(this.props.type.id,json)
-		//console.log(this.props)
+		//this.props.addStruct(this.props.type.id,json)
+		console.log(this.props)
 	}
 	getValues = () => {
 		const json = {
@@ -68,13 +68,14 @@ class AddObjectForm extends React.Component {
 				</ul>
 			</ul>
 				)
+		} else if(typeof this.props.type === 'object') {
+			return (
+				<p>Hello</p>
+				)
 		}
 		else return (
-			<p>Not Array</p>
+			<p onClick={this.showMe}>{this.props.index}</p>
 			)
-			return (
-				<p>not yer</p>
-				)
 	}
 }
 

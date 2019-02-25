@@ -14,9 +14,7 @@ class App extends React.Component {
 					}]
 				}]
 			},
-			state2:{
-				id:0,
-				type:"hello"
+			state2:{		
 			}
 		}
 	}
@@ -62,6 +60,11 @@ class App extends React.Component {
 		const status = key["statusRef"];
 		const json = obj[index];
 		let data = obj.type[0];
+			if(index == 0) {
+				obj = {id:0,
+					name:name,
+					type:[]}
+			}
 		for(let i = 0; i < 1; i++) {
 			data = data.type[0]
 		}
@@ -78,7 +81,7 @@ class App extends React.Component {
 	 		 default:
 		}
 		this.setState({obj: k})
-		console.log(key, status, obj,k);
+		console.log(index);
 	}
 	render() {
 		return (
