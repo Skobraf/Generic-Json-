@@ -14,8 +14,7 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		//this.props.addStruct(this.props.type.id,json)
-		console.log(this.props)
+		this.props.addStruct(this.props.type.id,json)
 	}
 	getValues = () => {
 		const json = {
@@ -70,11 +69,38 @@ class AddObjectForm extends React.Component {
 				)
 		} else if(typeof this.props.type === 'object') {
 			return (
-				<p>Hello</p>
+					<ul>
+						<li onClick={this.showVisible}>
+							<form onSubmit={this.showMe}>
+								<input type="text" placeholder="Text" ref={this.textRef} />
+								<select name="valeur"  ref={this.statusRef} onChange={this.toggleVisibility}>
+									<option value="text">text</option>
+									<option value="boolean">Boolean</option>
+									<option value="number">Number</option>
+									<option value="structure">Structure</option>
+									<option value="array">Array</option>
+									<option value="date">Date</option>
+								</select>
+								<input type="text" placeholder="Value" ref={this.valueRef}  style={{display: this.visible ? 'none' : 'inline-block'}} />
+								<button style={{display: this.visible ? 'inline-block' : 'none'}} type="submit">Add</button>
+								<button onClick={this.getValues} style={{display: this.visible ? 'none' : 'inline-block'}} >Submit</button>
+							</form>
+						</li>
+					{
+					Object.keys(this.props.type).filter(e => e == 'type').map((comment, i) => (
+							<AddObjectForm
+								key={i}
+								type={this.props.type[comment]}
+								addStruct={this.props.addStruct}
+								addJson={this.props.addJson}
+							/>
+						))
+					}
+					</ul>
 				)
 		}
 		else return (
-			<p onClick={this.showMe}>{this.props.index}</p>
+			<p onClick={this.showMe}>thank you</p>
 			)
 	}
 }

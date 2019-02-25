@@ -14,7 +14,7 @@ class App extends React.Component {
 					}]
 				}]
 			},
-			state2:{		
+			state2:{	
 			}
 		}
 	}
@@ -59,29 +59,33 @@ class App extends React.Component {
 		const value = key["valueRef"];
 		const status = key["statusRef"];
 		const json = obj[index];
-		let data = obj.type[0];
-			if(index == 0) {
-				obj = {id:0,
-					name:name,
-					type:[]}
-			}
+		if(index == null) {
+
+		}
+		let data = obj;	
 		for(let i = 0; i < 1; i++) {
 			data = data.type[0]
+			console.log(data)
 		}
 			switch(status) {
 	  		case "array":
-				data.type.push({
-					id:3,
-					name:name,
-					type:[]})	
+	  			if(index == null) {
+	  				data.type[0].push.psuh({
+	  					id:4,
+						name:name,
+						type:[]
+	  				})
+	  			}
+				
 	    	break;
 	    	case "structure":
 	  
 	    	break;
 	 		 default:
 		}
-		this.setState({obj: k})
-		console.log(index);
+		this.setState({obj: k}) 
+		console.log(obj)
+		
 	}
 	render() {
 		return (
