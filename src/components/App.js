@@ -3,42 +3,14 @@ import AddObjectForm from './AddObjectForm';
 
 class App extends React.Component {
 	state = {
-		obj:{},
-		visible:false
+		obj:{}
 	}
 	addRow = () => {
 		const row = {...this.state.obj};
 		row[`json${Date.now()}`] = {};
 		this.setState({obj: row});
 		}
-	toggleVisibility = (key, index) => {
-		const name = key["textRef"];
-		const value = key["valueRef"];
-		const status = key["statusRef"];
 
-			switch(status) {
-	  		case "boolean":
-				this.setState({visible:false})					
-	    	break;
-	    	case "text":
-	    		this.setState({visible:false})
-	    	break;
-	    	case "number":
-	    		this.setState({visible:false})
-	    	break;
-	    	case "date":
-	    		this.setState({visible:false})
-	    	break;
-	    	case "structure":
-	    		this.setState({visible:true})
-	    	break;
-	    	case "array":
-	    		this.setState({visible:true})
-	    	break;
-	 		 default:
-		}
-
-	}
 	addJson = (key, index) => {
 		const obj = {...this.state.obj};
 		const name = key["textRef"];
@@ -47,23 +19,39 @@ class App extends React.Component {
 		const json = obj[index];
 			switch(status) {
 	  		case "boolean":
-				json[name] = new Boolean();
-				
+				json[status] = new Boolean();
+				json["name"] = name;		
 	    	break;
 	    	case "text":
-	    		json[name] = value;
+	    		json[status] = value;
+	    		json["name"] = name;
 	    	break;
 	    	case "number":
-	    		json[name] = Number(value);
+	    		json[status] = Number(value);
+	    		json["name"] = name;
 	    	break;
 	    	case "date":
-	    		json[name] = new Date();
+	    		json[status] = new Date();
+	    		json["name"] = name;
+	    	break;
+	 		 default:
+		}
+		this.setState({obj})
+	}
+	addStruct = (key, index) => {
+		const obj = {...this.state.obj};
+		const name = key["textRef"];
+		const value = key["valueRef"];
+		const status = key["statusRef"];
+		const json = obj[index];
+			switch(status) {
+	  		case "array":
+				json[status] = [];
+				json["name"] = name;	
 	    	break;
 	    	case "structure":
-	    		json[name] = {};
-	    	break;
-	    	case "array":
-	    		json[name] = [];
+	    		json[status] = {};
+	    		json["name"] = name;
 	    	break;
 	 		 default:
 		}
@@ -79,8 +67,8 @@ class App extends React.Component {
 							key={key}
 							index={key}
 							addJson={this.addJson}
-							visible={this.state.visible}
-							toggleVisibility={this.toggleVisibility}
+							type={this.state.obj[key]}
+							addStruct={this.addStruct}
 							 />	
 							)
 					)}

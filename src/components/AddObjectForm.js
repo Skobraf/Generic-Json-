@@ -4,17 +4,17 @@ class AddObjectForm extends React.Component {
 	statusRef = React.createRef();
 	textRef = React.createRef();
 	valueRef = React.createRef();
-	showMe = () => {
-		return <p>hello</p>
+	showVisible = () => {
+		this.setState({visible: false})
 	}
 	showMe = (e) => {
 		e.preventDefault();
-		const souJson = {
+		const json = {
 			statusRef: this.statusRef.current.value,
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		console.log(souJson.textRef, souJson.statusRef);
+		this.props.addStruct(json, this.props.index)
 	}
 	getValues = () => {
 		const json = {
@@ -25,18 +25,21 @@ class AddObjectForm extends React.Component {
 		this.props.addJson(json, this.props.index);
 	}
 	toggleVisibility = () => {
-		const json = {
-			statusRef: this.statusRef.current.value,
-			textRef: this.textRef.current.value,
-			valueRef:this.valueRef.current.value
+
+		if (this.statusRef.current.value ==="array" || this.statusRef.current.value ==="structure" ) {
+			this.visible = true;
 		}
-		this.props.toggleVisibility(json, this.props.index);
-	}
+		else {this.visible = false;}
+		console.log(this.props);
+		}
+		
+
 	render() {
+		let visible = false;
 		return (
 			<ul>
-				<li>
-					<form>
+				<li onClick={this.showVisible}>
+					<form onSubmit={this.showMe}>
 						<input type="text" placeholder="Text" ref={this.textRef} />
 						<select name="valeur"  ref={this.statusRef} onChange={this.toggleVisibility}>
 							<option value="text">text</option>
@@ -46,12 +49,13 @@ class AddObjectForm extends React.Component {
 							<option value="array">Array</option>
 							<option value="date">Date</option>
 						</select>
-						<input type="text" placeholder="Value" ref={this.valueRef} onChange={this.getValues} style={{display: !this.props.visible ? 'inline-block' : 'none'}} />
-						<button style={{display: this.props.visible ? 'inline-block' : 'none'}} onClick={this.showMe}>add</button>
+						<input type="text" placeholder="Value" ref={this.valueRef}  style={{display: this.visible ? 'none' : 'inline-block'}} />
+						<button style={{display: this.visible ? 'inline-block' : 'none'}} type="submit">Add</button>
+						<button onClick={this.getValues} style={{display: this.visible ? 'none' : 'inline-block'}} >Submit</button>
 					</form>
 				</li>
 				<ul>
-					{}
+				
 				</ul>
 			</ul>
 			)
