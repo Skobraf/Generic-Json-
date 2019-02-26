@@ -14,7 +14,7 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addStruct(this.props.type.id,json, this.props.level)
+		this.props.addStruct(this.props.type.id,json, this.props.level, this.props.type.id)
 	}
 	getValues = () => {
 		const json = {
@@ -22,7 +22,7 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addJson(json, this.props.index);
+		this.props.addJson(this.props.type.id, json, this.props.level, this.props.type.id);
 	}
 	toggleVisibility = () => {
 
@@ -92,6 +92,7 @@ class AddObjectForm extends React.Component {
 							<AddObjectForm
 								key={i}
 								type={this.props.type[comment]}
+								level={i}
 								addStruct={this.props.addStruct}
 								addJson={this.props.addJson}
 							/>
