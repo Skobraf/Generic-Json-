@@ -16,8 +16,8 @@ class App extends React.Component {
 		});
 		}
 
-	addJson = (index, key, level, parentId) => {
-		const obj = {...this.state.obj["state1"]};
+	addJson = (index, key, level, parentId, stateNum) => {
+		const obj = {...this.state.obj[stateNum]};
 		const k = {...this.state.obj};
 		const name = key["textRef"];
 		const value = key["valueRef"];
@@ -26,24 +26,24 @@ class App extends React.Component {
 		if (Object.keys(obj).length === 0) {
 			switch(status) {
 		  		case "text":
-		  			k.state1["id"] = 0;
-			  		k.state1["name"] = name;
-			  		k.state1["type"] = value;
+		  			k[stateNum]["id"] = 0;
+			  		k[stateNum]["name"] = name;
+			  		k[stateNum]["type"] = value;
 		    	break;
 		    	case "number":
-		    		k.state1["id"] = 0;
-			  		k.state1["name"] = name;
-			  		k.state1["type"] = Number(value);		
+		    		k[stateNum]["id"] = 0;
+			  		k[stateNum]["name"] = name;
+			  		k[stateNum]["type"] = Number(value);		
 		    	break;
 		    	case 'boolean':
-		    		k.state1["id"] = 0;
-			  		k.state1["name"] = name;
-			  		k.state1["type"] = new Boolean();
+		    		k[stateNum]["id"] = 0;
+			  		k[stateNum]["name"] = name;
+			  		k[stateNum]["type"] = new Boolean();
 				break;
 				case 'date':
-					k.state1["id"] = 0;
-			  		k.state1["name"] = name;
-			  		k.state1["type"] = new Date();
+					k[stateNum]["id"] = 0;
+			  		k[stateNum]["name"] = name;
+			  		k[stateNum]["type"] = new Date();
 	 		 default:
 			}
 
@@ -100,9 +100,9 @@ class App extends React.Component {
 			if (Object.keys(obj).length === 0) {
 				switch(status) {
 			  		case "array":
-			  			k.state1["id"] = 0;
-			  			k.state1["name"] = name;
-			  			k.state1["type"] = [];
+			  			k[stateNum]["id"] = 0;
+			  			k[stateNum]["name"] = name;
+			  			k[stateNum]["type"] = [];
 			  			console.log(obj, k)
 			    	break;
 			    	case "structure":
