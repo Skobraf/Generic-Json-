@@ -103,7 +103,19 @@ class AddObjectForm extends React.Component {
 				)
 		}
 		else return (
-			<p onClick={this.showMe}>thank you</p>
+			<form onSubmit={this.showMe}>
+						<input type="text" placeholder="Text" ref={this.textRef} />
+						<select name="valeur"  ref={this.statusRef} onChange={this.toggleVisibility}>
+							<option value="text">text</option>
+							<option value="boolean">Boolean</option>
+							<option value="number">Number</option>
+							<option value="structure">Structure</option>
+							<option value="array">Array</option>
+							<option value="date">Date</option>
+						</select>
+						<input type="text" value={this.props.type} ref={this.valueRef}  style={{display: this.visible ? 'none' : 'inline-block'}} />
+						
+					</form>
 			)
 	}
 }

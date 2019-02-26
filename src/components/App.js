@@ -29,21 +29,25 @@ class App extends React.Component {
 		  			k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = value;
+			  		k[stateNum]["value"] = value;
 		    	break;
 		    	case "number":
 		    		k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
-			  		k[stateNum]["type"] = Number(value);		
+			  		k[stateNum]["type"] = Number(value);	
+			  		k[stateNum]["value"] = value;	
 		    	break;
 		    	case 'boolean':
 		    		k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = new Boolean();
+			  		k[stateNum]["value"] = value;
 				break;
 				case 'date':
 					k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = new Date();
+			  		k[stateNum]["value"] = value;
 	 		 default:
 			}
 
@@ -58,6 +62,7 @@ class App extends React.Component {
 		  			data.type.push({
 	  					id:index +1,
 						name:name,
+						value:value,
 						type:value
 	  				})
 		    	break;
@@ -65,6 +70,7 @@ class App extends React.Component {
 		  			data.type.push({
 	  					id:index +1,
 						name:name,
+						value:value,
 						type:Number(value)
 	  				})
 		    	break;
@@ -72,6 +78,7 @@ class App extends React.Component {
 		    		data.type.push({
 	  					id:index +1,
 						name:name,
+						value:value,
 						type:value
 	  				})
 	  			break;
@@ -79,6 +86,7 @@ class App extends React.Component {
 	  				data.type.push({
 	  					id:index +1,
 						name:name,
+						value:value,
 						type:value
 	  				})
 	  			break;
@@ -103,6 +111,7 @@ class App extends React.Component {
 			  			k[stateNum]["id"] = 0;
 			  			k[stateNum]["name"] = name;
 			  			k[stateNum]["type"] = [];
+			  			k[stateNum]["value"] = value;
 			  			console.log(obj, k)
 			    	break;
 			    	case "structure":
@@ -122,6 +131,7 @@ class App extends React.Component {
 								type:[]}) : data.type.push({
 			  					id:index +1,
 								name:name,
+								value:value,
 								type:[]
 			  				})
 								console.log(obj, k);
