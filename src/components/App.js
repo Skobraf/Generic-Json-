@@ -52,7 +52,7 @@ class App extends React.Component {
 		}
 		this.setState({obj})
 	}
-	addStruct = (index, key) => {
+	addStruct = (index, key, level) => {
 		const obj = {...this.state.obj["state1"]};
 		const k = {...this.state.obj};
 		const name = key["textRef"];
@@ -62,30 +62,27 @@ class App extends React.Component {
 		if(index == null) {
 
 		}
-		let data = obj;	
-		for(let i = 0; i < 1; i++) {
-			data = data.type[0]
-			console.log(data)
+		let data = obj.type[level];	
+		for(let i = 0; i < index - 1; i++) {
+			data = data.type[level]
 		}
 			switch(status) {
 	  		case "array":
-	  			if(index == null) {
-	  				data.type[0].push.psuh({
-	  					id:4,
+	  			index == 0 ? obj.type.push({id:index + 1,
+						name:name,
+						type:[]}) : data.type.push({
+	  					id:index +1,
 						name:name,
 						type:[]
 	  				})
-	  			}
-				
 	    	break;
 	    	case "structure":
 	  
 	    	break;
 	 		 default:
 		}
-		this.setState({obj: k}) 
-		console.log(obj)
-		
+		this.setState({obj: k})
+		console.log(level)
 	}
 	render() {
 		return (

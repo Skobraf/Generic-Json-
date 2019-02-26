@@ -14,7 +14,7 @@ class AddObjectForm extends React.Component {
 			textRef: this.textRef.current.value,
 			valueRef:this.valueRef.current.value
 		}
-		this.props.addStruct(this.props.type.id,json)
+		this.props.addStruct(this.props.type.id,json, this.props.level)
 	}
 	getValues = () => {
 		const json = {
@@ -59,6 +59,7 @@ class AddObjectForm extends React.Component {
 				{arr.type.map((comment, i) => (
 						<AddObjectForm
 						key={i}
+						level={i}
 						type={comment}
 						addStruct={this.props.addStruct}
 						addJson={this.props.addJson}
