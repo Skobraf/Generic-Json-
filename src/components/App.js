@@ -3,27 +3,17 @@ import AddObjectForm from './AddObjectForm';
 
 class App extends React.Component {
 	state = {
-		obj:{
-			state1:{
-				
-			},
-			state2:{
-				id:0,
-				type:{
-					id:1,
-					type:{
-						id:2,
-						type:{}
-					}
-				}
-			}
+		obj:{},
+		count:0
 		}
-	}
 
 	addRow = () => {
 		const row = {...this.state.obj};
-		row[`json${Date.now()}`] = {};
-		this.setState({obj: row});
+		row[`state${this.state.count}`] = {};
+		this.setState({
+			obj: row,
+			count:this.state.count +1
+		});
 		}
 
 	addJson = (index, key, level, parentId) => {
@@ -100,8 +90,8 @@ class App extends React.Component {
 		this.setState({obj: k})
 	}
 	
-	addStruct = (index, key, level, parentId) => {
-		let obj = {...this.state.obj["state1"]};
+	addStruct = (index, key, level, parentId,stateNum) => {
+		let obj = {...this.state.obj[stateNum]};
 		let k = {...this.state.obj};
 		const name = key["textRef"];
 		const value = key["valueRef"];
