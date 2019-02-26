@@ -30,24 +30,28 @@ class App extends React.Component {
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = value;
 			  		k[stateNum]["value"] = value;
+			  		k[stateNum]["status"] = status;
 		    	break;
 		    	case "number":
 		    		k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = Number(value);	
-			  		k[stateNum]["value"] = value;	
+			  		k[stateNum]["value"] = value;
+			  		k[stateNum]["status"] = status;	
 		    	break;
 		    	case 'boolean':
 		    		k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = new Boolean();
 			  		k[stateNum]["value"] = value;
+			  		k[stateNum]["status"] = status;
 				break;
 				case 'date':
 					k[stateNum]["id"] = 0;
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = new Date();
 			  		k[stateNum]["value"] = value;
+			  		k[stateNum]["status"] = status;
 	 		 default:
 			}
 
@@ -63,6 +67,7 @@ class App extends React.Component {
 	  					id:index +1,
 						name:name,
 						value:value,
+						status:status,
 						type:value
 	  				})
 		    	break;
@@ -71,6 +76,7 @@ class App extends React.Component {
 	  					id:index +1,
 						name:name,
 						value:value,
+						status:status,
 						type:Number(value)
 	  				})
 		    	break;
@@ -79,6 +85,7 @@ class App extends React.Component {
 	  					id:index +1,
 						name:name,
 						value:value,
+						status:status,
 						type:value
 	  				})
 	  			break;
@@ -87,6 +94,7 @@ class App extends React.Component {
 	  					id:index +1,
 						name:name,
 						value:value,
+						status:status,
 						type:value
 	  				})
 	  			break;
@@ -112,7 +120,7 @@ class App extends React.Component {
 			  			k[stateNum]["name"] = name;
 			  			k[stateNum]["type"] = [];
 			  			k[stateNum]["value"] = value;
-			  			console.log(obj, k)
+			  			k[stateNum]["status"] = status;
 			    	break;
 			    	case "structure":
 			  			console.log("parentId");
@@ -132,9 +140,10 @@ class App extends React.Component {
 			  					id:index +1,
 								name:name,
 								value:value,
+								status:status,
 								type:[]
 			  				})
-								console.log(obj, k);
+							
 			    	break;
 			    	case "structure":
 			  			console.log(parentId);

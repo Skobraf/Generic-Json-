@@ -93,6 +93,7 @@ class AddObjectForm extends React.Component {
 							<AddObjectForm
 								key={i}
 								type={this.props.type[comment]}
+								valeur={this.props.type}
 								level={i}
 								addStruct={this.props.addStruct}
 								addJson={this.props.addJson}
@@ -104,16 +105,11 @@ class AddObjectForm extends React.Component {
 		}
 		else return (
 			<form onSubmit={this.showMe}>
-						<input type="text" placeholder="Text" ref={this.textRef} />
-						<select name="valeur"  ref={this.statusRef} onChange={this.toggleVisibility}>
-							<option value="text">text</option>
-							<option value="boolean">Boolean</option>
-							<option value="number">Number</option>
-							<option value="structure">Structure</option>
-							<option value="array">Array</option>
-							<option value="date">Date</option>
+						<input type="text"  value={this.props.valeur.name} placeholder="Text" ref={this.textRef} />
+						<select name="valeur" value={this.props.valeur.name} ref={this.statusRef} onChange={this.toggleVisibility}>
+							<option value={this.props.valeur.value}>{this.props.valeur.status}</option>
 						</select>
-						<input type="text" value={this.props.type} ref={this.valueRef}  style={{display: this.visible ? 'none' : 'inline-block'}} />
+						<input type="text" value={this.props.valeur.value} ref={this.valueRef}  style={{display: this.visible ? 'none' : 'inline-block'}} />
 						
 					</form>
 			)
