@@ -16,6 +16,7 @@ class App extends React.Component {
 		});
 		}
 
+
 	addJson = (index, key, level, parentId, stateNum) => {
 		const obj = {...this.state.obj[stateNum]};
 		const k = {...this.state.obj};
@@ -51,7 +52,7 @@ class App extends React.Component {
 			  		k[stateNum]["name"] = name;
 			  		k[stateNum]["type"] = new Date();
 			  		k[stateNum]["value"] = value;
-			  		k[stateNum]["status"] = status;
+			  	break;
 	 		 default:
 			}
 
@@ -155,6 +156,21 @@ class App extends React.Component {
 			}	
 		this.setState({obj: k})
 	}
+	componentDidMount() {
+        const localStorageRef = localStorage.getItem('myNestedState');
+        const localStorageRefNum = localStorage.getItem('myCount')
+        console.log(localStorageRefNum);
+        this.setState({
+        			obj: JSON.parse(localStorageRef),
+					count:JSON.parse(localStorageRefNum)    			
+        		});
+    }
+
+    componentDidUpdate() {
+        console.log('updated');
+        localStorage.setItem('myNestedState', JSON.stringify(this.state.obj));
+        localStorage.setItem('myCount',JSON.stringify(this.state.count))
+    };
 	render() {
 		return (
 			<div>

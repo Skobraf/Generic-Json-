@@ -89,7 +89,7 @@ class AddObjectForm extends React.Component {
 							</form>
 						</li>
 					{
-					Object.keys(this.props.type).filter(e => e == 'type').map((comment, i) => (
+					Object.keys(this.props.type).filter(e => e === 'type').map((comment, i) => (
 							<AddObjectForm
 								key={i}
 								type={this.props.type[comment]}
