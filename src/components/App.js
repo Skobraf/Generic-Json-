@@ -160,10 +160,13 @@ class App extends React.Component {
         const localStorageRef = localStorage.getItem('myNestedState');
         const localStorageRefNum = localStorage.getItem('myCount')
         console.log(localStorageRefNum);
-        this.setState({
+        if(localStorageRef && localStorageRefNum) {
+        	this.setState({
         			obj: JSON.parse(localStorageRef),
 					count:JSON.parse(localStorageRefNum)    			
         		});
+        }
+        
     }
 
     componentDidUpdate() {
@@ -198,3 +201,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+   
